@@ -12,3 +12,4 @@ yhteys = mysql.connector.connect(
          autocommit=True
          )
 
+testi = 0
