@@ -13,3 +13,4 @@ yhteys = mysql.connector.connect(
          )
 
 testi = 0
+testi1 = 1
