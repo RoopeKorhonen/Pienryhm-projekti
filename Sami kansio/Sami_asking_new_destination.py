@@ -1,0 +1,1 @@
+# SAMI 9.) The program asks new destination(country) from the userohjelma kysyy uuden kohteen käyttäjältä.
