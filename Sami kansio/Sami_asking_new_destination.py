@@ -12,6 +12,5 @@ connection = mysql.connector.connect(
 
 
 def countryselecting():
+    newDestination = input("Give a new destination country. The country needs to be a different one where you have already flown: ")
 
-
-newDestination = input("Give a new destination country. The country needs to be a different one where you have already flown: ")
