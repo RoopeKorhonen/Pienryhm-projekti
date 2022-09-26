@@ -16,5 +16,9 @@ connection = mysql.connector.connect(
 
 def countryselecting():
     country = str(input("Where do you wanna fly?"))
-    lookingcountry = "SELECT continent WHERE iso_country = '" + country + '" "
-    return country
+    lookingcontinent = "SELECT DISTINCT continent from "' + country + '" "
+    lookingcountry = "SELECT DISTINCT name  from country where continent = "' + lookingcontinent + '" "
+    chosencountry = "SELECT DISTINCT name from "' + looking country +  '" = "' + country + '" "
+    return chosencountry
+
+print(countryselecting())
