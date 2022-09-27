@@ -21,12 +21,12 @@ def countryselecting():
     looking_continent_cursor.execute(lookingcontinent)
     looking_continent_result = looking_continent_cursor.fetchall()
 
-    lookingcountry = "SELECT DISTINCT name  from country where continent = "' + lookingcontinent + '" "
+    lookingcountry = "SELECT DISTINCT name  from country where continent = "' + looking_continent_result + '" "
     looking_country_cursor = connection.cursor()
     looking_country_cursor.execute(lookingcountry)
     looking_country_result = looking_country_cursor.fetchall()
 
-    chosencountry = "SELECT DISTINCT name from "' + looking country +  '" = "' + country + '" "
+    chosencountry = "SELECT DISTINCT name from "' + looking_country_result +  '" = "' + country + '" "
     chosen_country_cursor = connection.cursor()
     chosen_country_cursor.execute(chosencountry)
     result = chosen_country_cursor.fetchall()
