@@ -5,11 +5,11 @@ def Difficulty():
     diff_level = input("Please choose a difficulty level: \nThe Difficulty levels are \nEasy\nNormal\nHard\n:")
 
     if diff_level == "easy":
-        print("Chose eazy mode, you lazy pleb")
+        print("Chose eazy mode, you lazy pleb\nLet's play")
     elif diff_level == "normal":
-        print("You chose normal, kinda sus tbh")
+        print("You chose normal, kinda sus tbh\nLet's play")
     elif diff_level == "hard":
-        print("You chose crazy mega hard mode you absolute unit!")
+        print("You chose crazy mega hard mode you absolute unit!\nLet's play")
     else:
         print("ohh you're a funny guy haaa.")
 
