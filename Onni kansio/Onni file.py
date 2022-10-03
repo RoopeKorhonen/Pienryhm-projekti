@@ -38,7 +38,7 @@ def haeLentokenttia(chosen_name):
     return tulos
 
 maa = input("Anna maa nimi: ")
-haeMaa(maa)
+haeLentokenttia(maa)
 
-for rivi in haeMaa(maa):
+for rivi in haeLentokenttia(maa):
     print(f"{rivi[0]}")
