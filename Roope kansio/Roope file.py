@@ -26,6 +26,3 @@ def country_info(chosen):
 
 poll_country_selecting=country_selecting()
 poll_country_selecting=country_info(poll_country_selecting)
-print(poll_country_selecting)
-
-
