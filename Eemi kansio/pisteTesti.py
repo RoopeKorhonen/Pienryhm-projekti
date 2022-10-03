@@ -4,10 +4,10 @@ from geopy.distance import geodesic
 import mysql.connector
 yhteys = mysql.connector.connect(
          host='127.0.0.1',
-         port= 3306,
+         port=3306,
          database='flight_game',
          user='root',
-         password='SeOnSiina!?',
+         password='RootWord1Salasana1',
          autocommit=True
          )
 # testaus
@@ -24,7 +24,7 @@ def kursori_func(sql_komento):
         port=3306,
         database='flight_game',
         user='root',
-        password='SeOnSiina!?',
+        password='RootWord1Salasana1',
         autocommit=True
     )
     kursori = yhteys.cursor()
@@ -34,9 +34,6 @@ def kursori_func(sql_komento):
     tulos = kursori.fetchall()
 
     return tulos
-x=0
-if x==0:
-    print("kys")
 
 userName = input("Choose your username ")
 usernameADD = "INSERT INTO game (screen_name) values ('" + userName + "');"
