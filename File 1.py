@@ -15,7 +15,7 @@ connection = mysql.connector.connect(
 
 
 def username_input ():
-    user = input(print("Hello user please stage your gamertag: "))
+    user = input("Hello user please stage your gamertag: ")
     print(f"Hello {user}, welcome to the world of flying games.\nI am your game engine Flying Ultimatum")
 
 
@@ -25,13 +25,13 @@ def Difficulty():
     while diff_level != "easy" or "normal" or "hard":
         if diff_level == "easy":
             print("Chose eazy mode, you lazy pleb\nLet's play")
-            break
+            return 0.75
         elif diff_level == "normal":
             print("You chose normal, kinda sus tbh\nLet's play")
-            break
+            return 1.25
         elif diff_level == "hard":
             print("You chose crazy mega hard mode you absolute unit!\nLet's play")
-            break
+            return 1.75
         else:
             print("ohh you're a funny guy haaa.")
         diff_level = input("Please choose a difficulty level: \nThe Difficulty levels are \nEasy\nNormal\nHard\n:")
@@ -48,7 +48,7 @@ def country_info(chosen):
     return result
 
 
-def spawnpoint():
+def spawn_point():
     spawn_point_code= "SELECT name from airport order by RAND() limit 1"
     spawn_point_cursor = connection.cursor()
     spawn_point_cursor.execute(spawn_point_code)
@@ -62,8 +62,8 @@ def spawnpoint():
 mainmenu_int = input("Main menu\n1.Play\n2.Scores\n3.Quit\n: ")
 if mainmenu_int == "1":
     username_input()
-    Difficulty()
-    spawnpoint()
+    multiplier = Difficulty()
+    spawn_point()
     poll_country_selecting = country_info(country_selecting())
 elif mainmenu_int == "2":
     print("highscores menu")
