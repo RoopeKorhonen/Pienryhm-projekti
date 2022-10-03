@@ -48,12 +48,22 @@ def country_info(chosen):
     return result
 
 
-poll_country_selecting=country_info(country_selecting())
+def spawnpoint():
+    spawn_point_code= "SELECT name from airport order by RAND() limit 1"
+    spawn_point_cursor = connection.cursor()
+    spawn_point_cursor.execute(spawn_point_code)
+    result = spawn_point_cursor.fetchall()
+    for line in result:
+        current_airport = line
+        current_airport = current_airport[0]
+        print(f"You currently at: {current_airport}")
+
 
 mainmenu_int = input("Main menu\n1.Play\n2.Scores\n3.Quit\n: ")
 if mainmenu_int == "1":
     username_input()
     Difficulty()
+    spawnpoint()
     poll_country_selecting = country_info(country_selecting())
 elif mainmenu_int == "2":
     print("highscores menu")
