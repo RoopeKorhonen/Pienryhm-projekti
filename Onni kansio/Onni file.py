@@ -30,7 +30,7 @@ for rivi in tulos:
   #  return tulos
 
 # Valitse maa ja printtaa sen 5 ensimmäistä lentokenttää V
-def haeMaa(chosen_name):
+def haeLentokenttia(chosen_name):
     sql = "SELECT name FROM airport Where iso_country in (select iso_country from country where name = '" + chosen_name + "') ORDER BY RAND() limit 5"
     kursori = yhteys.cursor()
     kursori.execute(sql)
