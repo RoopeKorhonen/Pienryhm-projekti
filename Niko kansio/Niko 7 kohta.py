@@ -16,4 +16,4 @@ kursori.execute(sql)
 
 def co2_calculator():
     cursor()
-    co2_left = "SELECT co2_consumed FROM game where "+ user + "
+    co2_left =
