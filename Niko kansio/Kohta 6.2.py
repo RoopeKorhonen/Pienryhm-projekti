@@ -10,21 +10,27 @@ yhteys = mysql.connector.connect(
          port= 3306,
          database='flight_game',
          user='root',
-         password="",
+         password=salasana,
          autocommit=True
          )
 
 # Valitsee satunnaisen maan V
 
+current_airport = "lol"
+visited_airports = []
 
-sql = "SELECT name from country order by RAND() limit 1"
+sql = "SELECT name from airport order by RAND() limit 1"
 
 kursori = yhteys.cursor()
 kursori.execute(sql)
 
 tulos = kursori.fetchall()
 for rivi in tulos:
-    print(f"{rivi[0]}")
+    print(f"{rivi}")
+    current_airport = rivi
+
+current_airport = current_airport[0]
+print(current_airport)
 
 #def haeKoodi(name):
   #  return tulos
@@ -37,32 +43,40 @@ def haeLentokenttia(chosen_name):
     tulos = kursori.fetchall()
     return tulos
 
-maa = input("Anna maa nimi: ")
-haeLentokenttia(maa)
-list = []
-visited_airports = []
-for rivi in haeLentokenttia(maa):
-    print(rivi[0])
-    list.append(rivi[0])
-print(list)
-
-def choose_airport():
-    choice = input("Valitse lentokenttä: ")
-    return choice
-
-chosen_airport = choose_airport()
-if chosen_airport not in list:
-    print("Virheellinen valinta")
-    chosen_airport = choose_airport()
-else:
-    visited_airports.append(chosen_airport)
-
-def co2_calculator():
-    sql = "SELECT latitude_deg, longitude_deg FROM airport Where ident = '" + icao + "'"
+def co2_calculator(airport):
+    sql = "SELECT latitude_deg, longitude_deg FROM airport Where name = '" + airport + "'"
     kursori = yhteys.cursor()
     kursori.execute(sql)
     tulos = kursori.fetchall()
     return tulos
 
+def valitseMaa():
+    maa = input("Anna maa nimi: ")
+    haeLentokenttia(maa)
+    list = []
+    for rivi in haeLentokenttia(maa):
+        print(f"{rivi[0]} {geodesic(co2_calculator(rivi[0]), co2_calculator(current_airport)).km:0.2f} km")
+        list.append(rivi[0])
+    print(list)
+    return list
 
+def choose_airport():
+    choice = input("Valitse lentokenttä: ")
+    return choice
 
+maalista = valitseMaa()
+chosen_airport = choose_airport()
+if chosen_airport not in maalista:
+    print("Virheellinen valinta")
+    chosen_airport = choose_airport()
+else:
+    visited_airports.append(chosen_airport)
+
+print(visited_airports)
+
+co2_calculator(chosen_airport)
+co2_calculator(current_airport)
+
+print(f"pituus asemien välillä on {geodesic(co2_calculator(chosen_airport), co2_calculator(current_airport)).km:0.2f} km")
+
+valitseMaa()
