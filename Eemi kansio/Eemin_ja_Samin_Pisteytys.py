@@ -60,9 +60,3 @@ else:
     kursori_func(scoreADD)
 
     print(f"Pistemääräsi on {highScore} horrayyyy")
-
-
-
-
-
-
