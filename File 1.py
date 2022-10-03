@@ -1,6 +1,7 @@
 # Project Flight game
 
 import random
+from geopy.distance import geodesic
 
 import mysql.connector
 connection = mysql.connector.connect(
@@ -58,12 +59,52 @@ def spawn_point():
         current_airport = current_airport[0]
         print(f"You currently at: {current_airport}")
 
+# Onni niko funktiot alemmat 4 funktiot
 
+def haeLentokenttia(chosen_name):
+    sql = "SELECT name FROM airport Where iso_country in (select iso_country from country where name = '" + chosen_name + "') ORDER BY RAND() limit 5"
+    cursor = connection.cursor()
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    return result
+
+def co2_calculator(airport):
+    sql = "SELECT latitude_deg, longitude_deg FROM airport Where name = '" + airport + "'"
+    cursor = connection.cursor()
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    return result
+
+def choose_airport():
+    choice = input("Valitse lentokenttä: ")
+    return choice
+
+#EI TOIMI ALEMPI FUNKTIO
+def airfieldchecker():
+    maalista = valitseMaa()
+    chosen_airport = choose_airport()
+#While loop co2 päästöperustelu muista tehdä.
+    while
+        if chosen_airport not in maalista:
+            print("Virheellinen valinta")
+        else:
+            visited_airports.append(chosen_airport)
+
+ def valitseMaa():
+    list = []
+    for rivi in haeLentokenttia(country_selecting()):
+        print(f"{rivi[0]} {geodesic(co2_calculator(rivi[0]), co2_calculator(current_airport)).km:0.2f} km")
+        list.append(rivi[0])
+    print(list)
+    return list
+
+
+visited_airports = []
 mainmenu_int = input("Main menu\n1.Play\n2.Scores\n3.Quit\n: ")
 if mainmenu_int == "1":
     username_input()
     multiplier = Difficulty()
-    spawn_point()
+    current_airport=spawn_point()
     poll_country_selecting = country_info(country_selecting())
 elif mainmenu_int == "2":
     print("highscores menu")
