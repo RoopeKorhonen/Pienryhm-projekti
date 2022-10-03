@@ -1,4 +1,22 @@
 from geopy.distance import geodesic
+
+def kursori_func(sql_komento):
+    yhteys = mysql.connector.connect(
+        host='127.0.0.1',
+        port=3306,
+        database='flight_game',
+        user='root',
+        password='SeOnSiina!?',
+        autocommit=True
+    )
+    kursori = yhteys.cursor()
+
+    kursori.execute(sql_komento)
+
+    tulos = kursori.fetchall()
+
+    return tulos
+
 import mysql.connector
 yhteys = mysql.connector.connect(
          host='127.0.0.1',
@@ -17,19 +35,11 @@ if mainmenu_int == "1":
 
 elif mainmenu_int == "2":
 
-    score_database = "SELECT highscores, COUNT(*) >= 5 FROM game, WHERE highscores = '" + highScore_str + "';"
+    score_database = "SELECT screen_name, highscores FROM game ORDER BY highscores DESC LIMIT 5;"
 
-    sql = "SELECT type, COUNT(*) FROM airport WHERE iso_country = '" + maakoodi + "' GROUP BY TYPE"
-    scoreADD = "update game set highscores = '" + highScore_str + "' where screen_name = '" + userName + "';"
-    select
-    lemmikki_id, count(*)
-    from omistaa
-
-    group
-    by
-    lemmikki_id
-    having
-    count(*) >= 2;
+    result_highscore = kursori_func(score_database)
+    for x in result_highscore:
+        print(x)
 
 
 elif mainmenu_int == "3":
