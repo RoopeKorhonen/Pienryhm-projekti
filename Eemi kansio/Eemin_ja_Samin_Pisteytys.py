@@ -34,9 +34,6 @@ def kursori_func(sql_komento):
     tulos = kursori.fetchall()
 
     return tulos
-x=0
-if x==0:
-    print("kys")
 
 userName = input("Choose your username ")
 usernameADD = "INSERT INTO game (screen_name) values ('" + userName + "');"
@@ -59,13 +56,7 @@ while highScore != 2:
     print(f"Points:{highScore}")
 else:
     highScore_str = str(highScore)
-    scoreADD = "update table game (highscores) values (" + highScore_str + ") where screen_name = '" + userName + "';"
+    scoreADD = "update game set highscores = '" + highScore_str + "' where screen_name = '" + userName + "';"
     kursori_func(scoreADD)
 
     print(f"Pistemääräsi on {highScore} horrayyyy")
-
-
-
-
-
-
