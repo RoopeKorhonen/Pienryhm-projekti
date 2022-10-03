@@ -36,9 +36,9 @@ def kursori_func(sql_komento):
     return tulos
 
 userName = input("Choose your username ")
-usernameADD = "INSERT INTO game (screen_name) values ('" + userName + "');"
+#usernameADD = "INSERT INTO game (screen_name) values ('" + userName + "');"
 
-kursori_func(usernameADD)
+#kursori_func(usernameADD)
 
 print(f"Hello {userName}! Welcome to flight_game; ")
 print("Your purpose is to fly to airports hehe xd")
@@ -56,7 +56,8 @@ while highScore != 2:
     print(f"Points:{highScore}")
 else:
     highScore_str = str(highScore)
-    scoreADD = "update game set highscores = '" + highScore_str + "' where screen_name = '" + userName + "';"
-    kursori_func(scoreADD)
+    name_and_scoreADD = "INSERT INTO game (screen_name, highscores) values ('" + userName + "', '" + highScore_str + "');"
+    #scoreADD = "INSERT INTO game set highscores = '" + highScore_str + "';"
+    kursori_func(name_and_scoreADD)
 
     print(f"Pistemääräsi on {highScore} horrayyyy")
