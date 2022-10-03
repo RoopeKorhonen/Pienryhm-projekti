@@ -7,7 +7,7 @@ yhteys = mysql.connector.connect(
          port= 3306,
          database='flight_game',
          user='root',
-         password='RootWord1Salasana1',
+         password='SeOnSiina!?',
          autocommit=True
          )
 # testaus
@@ -18,12 +18,36 @@ def hae(lentoasema):
     tulos = kursori.fetchall()
     return tulos
 
+def kursori_func(sql_komento):
+    yhteys = mysql.connector.connect(
+        host='127.0.0.1',
+        port=3306,
+        database='flight_game',
+        user='root',
+        password='SeOnSiina!?',
+        autocommit=True
+    )
+    kursori = yhteys.cursor()
+
+    kursori.execute(sql_komento)
+
+    tulos = kursori.fetchall()
+
+    return tulos
+x=0
+if x==0:
+    print("kys")
+
 userName = input("Choose your username ")
+usernameADD = "INSERT INTO game (screen_name) values ('" + userName + "');"
+
+kursori_func(usernameADD)
+
 print(f"Hello {userName}! Welcome to flight_game; ")
 print("Your purpose is to fly to airports hehe xd")
 highScore = 0
 
-while highScore != 6:
+while highScore != 2:
     x = input("Anna ensimmäinen ICAO-koodi: ")
     x = x.upper()
     hae(x)
@@ -34,7 +58,10 @@ while highScore != 6:
     highScore = highScore + 1
     print(f"Points:{highScore}")
 else:
-    scoreADD = "INSERT INTO game (highscores) values (highScore)"
+    highScore_str = str(highScore)
+    scoreADD = "update table game (highscores) values (" + highScore_str + ") where screen_name = '" + userName + "';"
+    kursori_func(scoreADD)
+
     print(f"Pistemääräsi on {highScore} horrayyyy")
 
 
