@@ -17,7 +17,7 @@ yhteys = mysql.connector.connect(
 # Valitsee satunnaisen maan V
 
 
-sql = "SELECT name from country order by RAND() limit 1"
+sql = "SELECT name from airport order by RAND() limit 1"
 
 kursori = yhteys.cursor()
 kursori.execute(sql)
