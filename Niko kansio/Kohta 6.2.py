@@ -57,8 +57,10 @@ if chosen_airport not in list:
 else:
     visited_airports.append(chosen_airport)
 
+
+
 def co2_calculator():
-    sql = "SELECT latitude_deg, longitude_deg FROM airport Where ident = '" + icao + "'"
+    sql = "SELECT latitude_deg, longitude_deg FROM airport Where name = '" + chosen_airport + "'"
     kursori = yhteys.cursor()
     kursori.execute(sql)
     tulos = kursori.fetchall()
