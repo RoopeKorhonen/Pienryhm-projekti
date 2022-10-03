@@ -56,7 +56,7 @@ while highScore != 2:
     print(f"Points:{highScore}")
 else:
     highScore_str = str(highScore)
-    scoreADD = "update table game (highscores) values (" + highScore_str + ") where screen_name = '" + userName + "';"
+    scoreADD = "update game set highscores = '" + highScore_str + "' where screen_name = '" + userName + "';"
     kursori_func(scoreADD)
 
     print(f"Pistemääräsi on {highScore} horrayyyy")
