@@ -98,8 +98,10 @@ def airfieldchecker():
     print(list)
     return list
 
+def visited_airport_list():
+    visited_airports = []
+    return visited_airports
 
-visited_airports = []
 mainmenu_int = input("Main menu\n1.Play\n2.Scores\n3.Quit\n: ")
 if mainmenu_int == "1":
     username_input()
