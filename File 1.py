@@ -113,4 +113,4 @@ elif mainmenu_int == "2":
 elif mainmenu_int == "3":
     ("You have quit the game")
 
-
+player_airports = visited_airport_list()
