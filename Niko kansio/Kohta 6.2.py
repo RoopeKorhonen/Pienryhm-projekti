@@ -2,7 +2,6 @@
 
 salasana = input("Salasana: ")
 from geopy.distance import geodesic
-import random
 
 import mysql.connector
 yhteys = mysql.connector.connect(
@@ -16,7 +15,6 @@ yhteys = mysql.connector.connect(
 
 # Valitsee satunnaisen maan V
 
-current_airport = "lol"
 visited_airports = []
 
 sql = "SELECT name from airport order by RAND() limit 1"
@@ -72,11 +70,8 @@ if chosen_airport not in maalista:
 else:
     visited_airports.append(chosen_airport)
 
-print(visited_airports)
 
 co2_calculator(chosen_airport)
 co2_calculator(current_airport)
 
 print(f"pituus asemien välillä on {geodesic(co2_calculator(chosen_airport), co2_calculator(current_airport)).km:0.2f} km")
-
-valitseMaa()
