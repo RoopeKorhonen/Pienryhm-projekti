@@ -12,6 +12,9 @@ print(high_score_calculator(airport))
  #   print(f"{geodesic(hae(x),hae(y)).km:0.2f} kilometriä välimatkaa.")
   #  highScore = highScore + 1
    # print(f"Points:{highScore}")
+
+
+##### TÄÄ VIELÄ FUNKTIOKSI. TÄMÄ LISÄÄ HIGHSCOREN DATABASEEN!!!!
     #else:
      #   highScore_str = str(highScore)
       #  name_and_scoreADD = "INSERT INTO game (screen_name, highscores) values ('" + userName + "', '" + highScore_str + "');"
