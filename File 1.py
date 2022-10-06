@@ -68,7 +68,7 @@ def haeLentokenttia(chosen_name):
     result = cursor.fetchall()
     return result
 
-def co2_calculator(airport):
+def (airport):
     sql = "SELECT latitude_deg, longitude_deg FROM airport Where name = '" + airport + "'"
     cursor = connection.cursor()
     cursor.execute(sql)
@@ -102,15 +102,17 @@ def visited_airport_list():
     visited_airports = []
     return visited_airports
 
-mainmenu_int = input("Main menu\n1.Play\n2.Scores\n3.Quit\n: ")
-if mainmenu_int == "1":
+main_menu_int = input("Main menu\n1.Play\n2.Scores\n3.Quit\n: ")
+if main_menu_int == "1":
     username_input()
     multiplier = Difficulty()
     current_airport=spawn_point()
     poll_country_selecting = country_info(country_selecting())
-elif mainmenu_int == "2":
+elif main_menu_int == "2":
     print("highscores menu")
-elif mainmenu_int == "3":
+elif main_menu_int == "3":
     ("You have quit the game")
 
+
+player_list = visited_airport_list()
 
