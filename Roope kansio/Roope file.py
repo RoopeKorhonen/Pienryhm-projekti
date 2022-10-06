@@ -4,7 +4,6 @@
 import random
 
 import mysql.connector
-
 connection = mysql.connector.connect(
          host='127.0.0.1',
          port= 3306,
@@ -14,24 +13,16 @@ connection = mysql.connector.connect(
          autocommit=True
          )
 
+def country_selecting():
+    country_select = input("Give country name")
+    return country_select
 
-def countryselecting():
-    country = input("Where do you wanna fly?")
-    looking_continent = "SELECT DISTINCT continent from "' + country + '" "
-    looking_continent_cursor = connection.cursor()
-    looking_continent_cursor.execute(lookingcontinent)
-    looking_continent_result = looking_continent_cursor.fetchall()
-
-    looking_country = "SELECT DISTINCT name  from country where continent = "' + looking_continent_result + '" "
-    looking_country_cursor = connection.cursor()
-    looking_country_cursor.execute(looking_country)
-    looking_country_result = looking_country_cursor.fetchall()
-
-    chosen_country = "SELECT DISTINCT name from "' + looking_country_result +  '" = "' + country + '" "
-    chosen_country_cursor = connection.cursor()
-    chosen_country_cursor.execute(chosen_country)
-    result = chosen_country_cursor.fetchall()
+def country_info(chosen):
+    country_select = "SELECT * FROM country WHERE name = '" + chosen + "';"
+    country_select_cursor = connection.cursor()
+    country_select_cursor.execute(country_select)
+    result = country_select_cursor.fetchall()
     return result
 
-print(countryselecting())
-
+poll_country_selecting=country_selecting()
+poll_country_selecting=country_info(poll_country_selecting)

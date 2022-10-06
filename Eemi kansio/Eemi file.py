@@ -10,7 +10,13 @@ yhteys = mysql.connector.connect(
          password='RootWord1Salasana1',
          autocommit=True
          )
-# testaus
+
+highScore = 0
+distance = 0
+def username_input ():
+    user = input(print("Hello user please stage your gamertag: "))
+    print(f"Hello {user}, welcome to the world of flying games.\nI am your game engine Flying Ultimatum")
+
 def hae(lentoasema):
     sql = "select latitude_deg, longitude_deg from airport where ident = '" + lentoasema + "'"
     kursori = yhteys.cursor()
@@ -18,12 +24,8 @@ def hae(lentoasema):
     tulos = kursori.fetchall()
     return tulos
 
-userName = input("Choose your username ")
-print(f"Hello {userName}! Welcome to flight_game; ")
-print("Your purpose is to fly to airports hehe xd")
-highScore = 0
-
-while highScore != -1:
+username_input()
+while highScore != "":
     x = input("Anna ensimmäinen ICAO-koodi: ")
     x = x.upper()
     hae(x)
@@ -33,5 +35,9 @@ while highScore != -1:
     print(f"{geodesic(hae(x),hae(y)).km:0.2f} kilometriä välimatkaa.")
     highScore = highScore + 1
     print(f"Points:{highScore}")
+    distance = distance +
+    print(f"Distance travelled {distance}km")
 else:
-    print(f"Pistemääräsi on {highScore} horrayyyy")
+    print(f"You got {highScore} points during this game!")
+    print(f"You traveled {distance}km during this game!")
+    print("Thank you for playing!")

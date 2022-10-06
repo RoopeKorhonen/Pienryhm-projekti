@@ -13,9 +13,11 @@ def Difficulty():
     else:
         print("ohh you're a funny guy haaa.")
 
+
 if mainmenu_int == "1":
     Difficulty()
 elif mainmenu_int == "2":
     print("highscores menu")
 elif mainmenu_int == "3":
     ("You have quit the game")
+
