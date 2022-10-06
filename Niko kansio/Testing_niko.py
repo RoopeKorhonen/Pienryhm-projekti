@@ -50,12 +50,12 @@ def spawn_point():
         current_airport = line
         current_airport = current_airport[0]
         print(f"You currently at: {current_airport}")
-    search_airports()
+
 
 def search_airports(chosen_name):
     sql = "SELECT name FROM airport Where iso_country in (select iso_country from country where name = '" + chosen_name + "') ORDER BY RAND() limit 5"
     list = []
-    for rivi in haeLentokenttia(country_selecting()):
+    for rivi in search_airports(country_selecting()):
         print(f"{rivi[0]} {geodesic(co2_calculator(rivi[0]), co2_calculator(current_airport)).km:0.2f} km")
         list.append(rivi[0])
     print(list)
@@ -83,6 +83,7 @@ def country_info(chosen):
     country_select_cursor.execute(country_select)
     result = country_select_cursor.fetchall()
     return result
+
 def co2_calculator():
     print(f"pituus asemien välillä on {geodesic(co2_calculator(chosen_airport), co2_calculator(current_airport)).km:0.2f} km")
     co2_used = geodesic(co2_calculator(chosen_airport), co2_calculator(current_airport)).km / 5.5 * multiplier
