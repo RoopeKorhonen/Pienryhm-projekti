@@ -82,7 +82,7 @@ co2_calculator(current_airport)
 
 print(f"pituus asemien välillä on {geodesic(co2_calculator(chosen_airport), co2_calculator(current_airport)).km:0.2f} km")
 co2_used = geodesic(co2_calculator(chosen_airport), co2_calculator(current_airport)).km / 5.5 * 1.5
-print(f"{co2_used}:2f")
+print(f"{co2_used:0.2f}")
 
 
 valitseMaa()

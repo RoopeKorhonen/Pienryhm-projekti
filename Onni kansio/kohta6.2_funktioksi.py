@@ -16,6 +16,7 @@ yhteys = mysql.connector.connect(
 visited_airports = []
 current_airport = ""
 
+
 def haeLentokenttia(chosen_name):
     sql = "SELECT name FROM airport Where iso_country in (select iso_country from country where name = '" + chosen_name + "') ORDER BY RAND() limit 5"
     kursori = yhteys.cursor()
@@ -41,7 +42,7 @@ def valitseMaa():
     list = []
     for rivi in haeLentokenttia(maa):
         # ''.join(rivi)
-        print(f"{rivi[0]} {geodesic(co2_calculator(rivi[0]), co2_calculator(current_airport)).km:0.2f} km")
+        print(f"{rivi[0]} {geodesic(km_calculator(rivi[0]), km_calculator(current_airport)).km:0.2f} km")
         list.append(rivi[0])
     return list
 
