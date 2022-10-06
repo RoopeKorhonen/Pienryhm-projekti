@@ -50,20 +50,32 @@ def spawn_point():
         current_airport = line
         current_airport = current_airport[0]
         print(f"You currently at: {current_airport}")
-    country_selecting()
+    search_airports()
 
-def country_selecting():
-    country_select = input("Give country name: ")
-    return country_select
-    Searching_5_Airports()
-
-
-def Searching_5_Airports(chosen):
-    sql = "SELECT name FROM airport Where iso_country in (select iso_country from country where name = '" + chosen + "') ORDER BY RAND() limit 5"
+def search_airports(chosen_name):
+    sql = "SELECT name FROM airport Where iso_country in (select iso_country from country where name = '" + chosen_name + "') ORDER BY RAND() limit 5"
+    list = []
+    for rivi in haeLentokenttia(country_selecting()):
+        print(f"{rivi[0]} {geodesic(co2_calculator(rivi[0]), co2_calculator(current_airport)).km:0.2f} km")
+        list.append(rivi[0])
+    print(list)
     cursor = connection.cursor()
     cursor.execute(sql)
     result = cursor.fetchall()
-    return result
+    return list
+
+
+def country_selecting():
+    country = input("Anna country nimi: ")
+    search_airports(country)
+    list = []
+    for rivi in search_airports(country):
+        print(f"{rivi[0]} {geodesic(co2_calculator(rivi[0]), co2_calculator(current_airport)).km:0.2f} km")
+        list.append(rivi[0])
+    print(list)
+    return list
+
+
 
 def country_info(chosen):
     country_select = "SELECT * FROM country WHERE name = '" + chosen + "';"
@@ -71,5 +83,12 @@ def country_info(chosen):
     country_select_cursor.execute(country_select)
     result = country_select_cursor.fetchall()
     return result
+def co2_calculator():
+    print(f"pituus asemien välillä on {geodesic(co2_calculator(chosen_airport), co2_calculator(current_airport)).km:0.2f} km")
+    co2_used = geodesic(co2_calculator(chosen_airport), co2_calculator(current_airport)).km / 5.5 * multiplier
+    return co2_used
+
 
 username_input()
+co2_calculator(chosen_airport)
+co2_calculator(current_airport)

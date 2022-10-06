@@ -10,19 +10,14 @@ connection = mysql.connector.connect(
          autocommit=True
          )
 
-
-difficulty= input("Please choose a difficulty level")
-    while diff_level ==" ":
-        if diff_level == 1:
-            print("Chose eazy mode, you lazy pleb")
-        elif diff_level == 2:
-            print("You chose normal, kinda sus tbh")
-        elif diff_level == 3:
-            print("You chose crazy mega hard mode you absolute unit")
-        else
-            print("ohh you're a funny guy haaa.")
-username_input()
-def username_input ():
-    user = input(print("Hello user please stage your gamertag: "))
-    print(f"Hello {user}, welcome to the world of flying games.\nI am your game engine Flying Ultimatum")
+sql = "SELECT name FROM airport Where iso_country in (select iso_country from country where name = '" + chosen_name + "') ORDER BY RAND() limit 5"
+list = []
+for rivi in haeLentokenttia(country_selecting()):
+    print(f"{rivi[0]} {geodesic(co2_calculator(rivi[0]), co2_calculator(current_airport)).km:0.2f} km")
+    list.append(rivi[0])
+print(list)
+cursor = connection.cursor()
+cursor.execute(sql)
+result = cursor.fetchall()
+return list
 

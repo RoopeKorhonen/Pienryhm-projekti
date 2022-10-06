@@ -59,24 +59,21 @@ def valitseMaa():
     print(list)
     return list
 
+
+
 def choose_airport():
     choice = input("Valitse lentokenttä: ")
     return choice
 
-maalista = valitseMaa()
-chosen_airport = choose_airport()
-if chosen_airport not in maalista:
-    print("Virheellinen valinta")
-    chosen_airport = choose_airport()
-else:
-    visited_airports.append(chosen_airport)
+def visited_airports():
+    if chosen_airport not in maalista:
+        print("Virheellinen valinta")
+        chosen_airport = choose_airport()
+    else:
+        visited_airports.append(chosen_airport)
 
 print(visited_airports)
-
-co2_calculator(chosen_airport)
-co2_calculator(current_airport)
-
-
+def co2_calculator():
 print(f"pituus asemien välillä on {geodesic(co2_calculator(chosen_airport), co2_calculator(current_airport)).km:0.2f} km")
 co2_used = geodesic(co2_calculator(chosen_airport), co2_calculator(current_airport)).km / 5.5 * 1.5
 print(f"{co2_used}:2f")
@@ -84,3 +81,8 @@ print(f"{co2_used}:2f")
 
 valitseMaa()
 choose_airport()
+maalista = valitseMaa()
+chosen_airport = choose_airport()
+choose_airport()
+co2_calculator(chosen_airport)
+co2_calculator(current_airport)
