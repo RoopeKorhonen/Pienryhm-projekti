@@ -1,18 +1,54 @@
-# SAMI 8.) The program adds the right score value to the user data.
+def visited_airport_list():
+    visited_airports = []
+    return visited_airports
 
-# AFTER FLIGHTS ARE DONE, CALL THE FOLLOWING FUNCTION BELOW
+player_list = visited_airport_list()
 
-def highScore():
-    # COMMAND TO COUNT TOTAL FLIGHTS TO COUNTRIES
-    # COMMAND TO COUNT TOTAL VALUE FOR THE FLIGHTS DONE
-    # COMMAND TO RETURN VALUE (HIGHSCORE) FROM THE FUNCTION
+def high_score_calculator():
+    highscore = len(visited_airport_list())*10
+    return highscore
 
-#IN THE END OF THE CODE, AFTER GETTING HIGHSCORE FROM FUNCTION --> COMMAND TO PUSH THE HIGHSCORE INTO THE GAME USERS DATA
+def cursor_func(connection_execute):
+    connection = mysql.connector.connect(
+        host='127.0.0.1',
+        port=3306,
+        database='flight_game',
+        user='root',
+        password='SeOnSiina!?',
+        autocommit=True
+    )
+    cursor = connection.cursor()
+
+    cursor.execute(connection_execute)
+
+    result = cursor.fetchall()
+
+    return result
+
+def high_score_add_to_database():
+    highScore_str = str(player_list)
+    name_and_scoreADD: str = "INSERT INTO game (screen_name, highscores) values ('" + username_input() + "', '" + high_score_calculator(player_list) + "');"
+    scoreADD = "INSERT INTO game set highscores = '" + highScore_str + "';"
+    cursor_func(name_and_scoreADD)
 
 
 
 
-if countryselecting
 
 
+mainmenu_int = input("Main menu\n1.Play\n2.Scores\n3.Quit\n: ")
+if mainmenu_int == "1":
+    username_input()
+    multiplier = Difficulty()
+    current_airport=spawn_point()
+    poll_country_selecting = country_info(country_selecting())
+    high_score_add_to_database()
+elif mainmenu_int == "2":
+    score_database = "SELECT screen_name, highscores FROM game ORDER BY highscores DESC LIMIT 5;"
 
+    result_highscore = cursor_func(score_database)
+    for x in result_highscore:
+        print(x)
+
+elif mainmenu_int == "3":
+    ("You have quit the game")

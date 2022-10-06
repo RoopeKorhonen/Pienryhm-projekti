@@ -1,7 +1,7 @@
 
 def high_score_calculator(airport_amount):
-    airports = len(airport_amount)*10
-    return airports
+    highscore = len(airport_amount)*10
+    return highscore
 
 
 airport = ["vantaa", "ruotsi", "kulli"]
@@ -15,15 +15,15 @@ print(high_score_calculator(airport))
 
 
 ##### TÄÄ VIELÄ FUNKTIOKSI. TÄMÄ LISÄÄ HIGHSCOREN DATABASEEN!!!!
-    #else:
-     #   highScore_str = str(highScore)
-      #  name_and_scoreADD = "INSERT INTO game (screen_name, highscores) values ('" + userName + "', '" + highScore_str + "');"
-       # #scoreADD = "INSERT INTO game set highscores = '" + highScore_str + "';"
-        #kursori_func(name_and_scoreADD)
+    else:
+        highScore_str = str(highScore)
+        name_and_scoreADD = "INSERT INTO game (screen_name, highscores) values ('" + userName + "', '" + highScore_str + "');"
+        scoreADD = "INSERT INTO game set highscores = '" + highScore_str + "';"
+        kursori_func(name_and_scoreADD)
 
-    #print(f"Pistemääräsi on {highScore} horrayyyy")
+    print(f"Pistemääräsi on {highScore} horrayyyy")
 
-#high_score_calculator(player_airports)
+high_score_calculator(player_airports)
 
 
 
