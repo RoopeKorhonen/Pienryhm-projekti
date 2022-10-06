@@ -40,7 +40,7 @@ mainmenu_int = input("Main menu\n1.Play\n2.Scores\n3.Quit\n: ")
 if mainmenu_int == "1":
     username_input()
     multiplier = Difficulty()
-    current_airport=spawn_point()
+    current_airport = spawn_point()
     poll_country_selecting = country_info(country_selecting())
     high_score_add_to_database()
 elif mainmenu_int == "2":
