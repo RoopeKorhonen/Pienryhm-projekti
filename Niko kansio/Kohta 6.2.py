@@ -17,19 +17,21 @@ yhteys = mysql.connector.connect(
 # Valitsee satunnaisen maan V
 
 visited_airports = []
+current_airport = ""
+def start_game():
+    sql = "SELECT name from airport order by RAND() limit 1"
 
-sql = "SELECT name from airport order by RAND() limit 1"
+    kursori = yhteys.cursor()
+    kursori.execute(sql)
 
-kursori = yhteys.cursor()
-kursori.execute(sql)
+    tulos = kursori.fetchall()
+    for rivi in tulos:
+        current_airport = rivi
 
-tulos = kursori.fetchall()
-for rivi in tulos:
-    print(f"{rivi}")
-    current_airport = rivi
+    current_airport = current_airport[0]
+    print(f"You're at {current_airport}")
 
-current_airport = current_airport[0]
-print(current_airport)
+start_game()
 
 #def haeKoodi(name):
   #  return tulos
@@ -43,6 +45,7 @@ def haeLentokenttia(chosen_name):
     return tulos
 
 def co2_calculator(airport):
+    airport_name = airport
     sql = "SELECT latitude_deg, longitude_deg FROM airport Where name = '" + airport + "'"
     kursori = yhteys.cursor()
     kursori.execute(sql)
@@ -54,9 +57,9 @@ def valitseMaa():
     haeLentokenttia(maa)
     list = []
     for rivi in haeLentokenttia(maa):
+        #''.join(rivi)
         print(f"{rivi[0]} {geodesic(co2_calculator(rivi[0]), co2_calculator(current_airport)).km:0.2f} km")
         list.append(rivi[0])
-    print(list)
     return list
 
 def choose_airport():
