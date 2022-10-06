@@ -19,7 +19,7 @@ def update_location(location):
 def emission_calculator(chosen):
     #print(f"pituus asemien välillä on {geodesic(km_calculator(chosen), km_calculator(current_location)).km} km")
     co2_used = geodesic(km_calculator(chosen), km_calculator(current_location)).km
-    print(f"You consumed {co2_used / 5.5 * multiplier:0.2f} of CO2")
+    print(f"You consumed {co2_used / 1.69 * multiplier:0.2f} of CO2")
     update_location(chosen)
 
 def choose_airport(choices):
@@ -34,9 +34,10 @@ def choose_airport(choices):
 
 
 def km_calculator(airport):
-    sql = "SELECT latitude_deg, longitude_deg FROM airport Where name = '" + airport + "'"
+    sql = "SELECT latitude_deg, longitude_deg FROM airport Where name = %s"
+    ap_2_list = [airport]
     kursori = connection.cursor()
-    kursori.execute(sql)
+    kursori.execute(sql, ap_2_list)
     tulos = kursori.fetchall()
     return tulos
 
@@ -94,5 +95,4 @@ def username_input():
 
 username_input()
 multiplier = Difficulty()
-print(multiplier)
 spawn_point()
