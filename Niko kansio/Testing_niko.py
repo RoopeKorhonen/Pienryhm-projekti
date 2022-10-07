@@ -42,7 +42,7 @@ def Difficulty():
 
 
 def spawn_point():
-    spawn_point_code = "SELECT name from airport order by RAND() limit 1"
+    spawn_point_code= "SELECT name from airport order by RAND() limit 1"
     spawn_point_cursor = connection.cursor()
     spawn_point_cursor.execute(spawn_point_code)
     result = spawn_point_cursor.fetchall()
@@ -51,7 +51,6 @@ def spawn_point():
         current_airport = current_airport[0]
         print(f"You currently at: {current_airport}")
     country_selecting()
-    return current_airport
 
 def country_selecting():
     country_select = input("Give country name: ")

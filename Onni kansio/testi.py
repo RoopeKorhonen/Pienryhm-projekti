@@ -10,6 +10,21 @@ connection = mysql.connector.connect(
          password=salasana,
          autocommit=True
          )
+
+def co2_budgetgiver():
+    co2_budget = 15000
+    return co2_budget
+
+
+def co2_tracker(value):
+    if value < 15000:
+        global co2_budget
+        co2_budget = co2_budget - value
+        print(co2_budget)
+        return
+    else:
+        game_over()
+
 def update_location(location):
     current_location = location
     print(f"Your location is: {current_location}")
@@ -17,10 +32,12 @@ def update_location(location):
     chooseCountry()
 
 
+
 def emission_calculator(chosen):
     #print(f"pituus asemien välillä on {geodesic(km_calculator(chosen), km_calculator(current_location)).km} km")
-    co2_used = geodesic(km_calculator(chosen), km_calculator(current_location)).km
-    print(f"You consumed {co2_used / (1.69 * multiplier):0.2f} of CO2")
+    co2_used = geodesic(km_calculator(chosen), km_calculator(current_location)).km / (1.69 * multiplier)
+    co2_tracker(co2_used)
+    print(f"You consumed {co2_used:0.2f} of CO2")
     update_location(chosen)
 
 def choose_airport(choices):
@@ -58,6 +75,12 @@ def chooseCountry():
         print(f"{rivi[0]} {geodesic(km_calculator(rivi[0]), km_calculator(current_location)).km:0.2f} km")
         list.append(rivi[0])
     choose_airport(list)
+
+
+def game_over():
+    print("Game over you ran out of co2 to consume")
+
+
 def spawn_point():
     spawn_point_code = "SELECT name from airport order by RAND() limit 1"
     spawn_point_cursor = connection.cursor()
@@ -93,8 +116,13 @@ def username_input():
     user = input("Hello user please stage your gamertag: ")
     print(f"Hello {user}, welcome to the world of flying games.\nI am your game engine Flying Ultimatum")
     return
-
+co2_budget = co2_budgetgiver()
 username_input()
 multiplier = Difficulty()
 spawn_point()
+
+def co2_budgetgiver():
+    co2_budget = 15000
+    return co2_budget
+
 # päivitetty :DD
