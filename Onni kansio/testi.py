@@ -96,3 +96,4 @@ def username_input():
 username_input()
 multiplier = Difficulty()
 spawn_point()
+# päivitetty :DD
