@@ -1,6 +1,4 @@
 salasana = input("Salasana: ")
-from geopy.distance import geodesic
-import random
 
 import mysql.connector
 yhteys = mysql.connector.connect(
@@ -11,4 +9,3 @@ yhteys = mysql.connector.connect(
          password=salasana,
          autocommit=True
          )
-

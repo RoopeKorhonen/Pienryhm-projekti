@@ -90,7 +90,7 @@ def airfieldchecker():
         else:
             visited_airports.append(chosen_airport)
 
-def valitseMaa():
+ def valitseMaa():
     list = []
     for rivi in haeLentokenttia(country_selecting()):
         print(f"{rivi[0]} {geodesic(co2_calculator(rivi[0]), co2_calculator(current_airport)).km:0.2f} km")
@@ -116,7 +116,7 @@ if mainmenu_int == "1":
 >>>>>>> 5a985c4cbb02a0b801998e36bfc16ce8ec534894
     username_input()
     multiplier = Difficulty()
-    current_airport = spawn_point()
+    current_airport=spawn_point()
     poll_country_selecting = country_info(country_selecting())
 elif main_menu_int == "2":
     print("highscores menu")
