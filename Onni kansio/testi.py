@@ -29,7 +29,6 @@ def update_location(location):
     current_location = location
     airport_list.append(current_location)
     print(f"Your location is: {current_location}")
-
     chooseCountry()
 
 
@@ -71,9 +70,8 @@ def chooseCountry():
     country = input("Select a country to fly to: ")    #JOS KÄYTTÄJÄ VALITSEE VÄÄRÄN MAAN / TYPO, NIIN OHJELMA SOFTLOCKKAANTUU. TÄHÄN VALINTA, JOKA PALAA KYSYNTÄÄN.
     list = []
     for rivi in searchAirports(country):
-        #''.join(rivi)
-        print(rivi[0])
-        print(f"{geodesic(km_calculator(rivi[0]), km_calculator(current_location)).km:0.2f} km")
+        ''.join(rivi[0])
+        print(f"{rivi[0]} {geodesic(km_calculator(rivi[0]), km_calculator(current_location)).km:0.2f} km")
         list.append(rivi[0])
     choose_airport(list)
 
@@ -90,11 +88,11 @@ def spawn_point():
     result = spawn_point_cursor.fetchall()
     for line in result:
         current_airport = line
-        ''.join(current_airport)
+        ''.join(current_airport[0])
         current_airport = current_airport[0]
         print(f"You're currently at: {current_airport}")
         global current_location
-        current_location = current_airport
+        current_location = current_airport[0]
     chooseCountry()
 def Difficulty():
     diff_level = input("Please choose a difficulty level: \nThe Difficulty levels are \nEasy\nNormal\nHard\n:")
