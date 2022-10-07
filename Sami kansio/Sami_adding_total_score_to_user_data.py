@@ -26,9 +26,9 @@ def cursor_func(connection_execute):
     return result
 
 def high_score_add_to_database():
-    highScore_str = str(player_list)
+    #highScore_str = str(player_list)
     name_and_scoreADD: str = "INSERT INTO game (screen_name, highscores) values ('" + username_input() + "', '" + high_score_calculator(player_list) + "');"
-    scoreADD = "INSERT INTO game set highscores = '" + highScore_str + "';"
+    #scoreADD = "INSERT INTO game set highscores = '" + highScore_str + "';"
     cursor_func(name_and_scoreADD)
 
 
