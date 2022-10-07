@@ -128,7 +128,7 @@ def high_score_add_to_database(name):
 
 
 def high_score_calculator():
-    highscore = len(airport_list)*10
+    highscore = len(airport_list)*10000
     return highscore
 
 def visited_airport_list():
@@ -143,6 +143,7 @@ if main_menu_int == "1":
     username = username_input()
     multiplier = Difficulty()
     spawn_point()
+    high_score_add_to_database(username)
 elif main_menu_int == "2":
         print("highscores menu")
         score_database = "SELECT screen_name, highscores FROM game ORDER BY highscores DESC LIMIT 5;"
