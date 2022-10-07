@@ -49,7 +49,7 @@ def searchAirports(chosen_name):
     return result
 
 def chooseCountry():
-    country = input("Select a country to fly to: ")
+    country = input("Select a country to fly to: ")    #JOS KÄYTTÄJÄ VALITSEE VÄÄRÄN MAAN / TYPO, NIIN OHJELMA SOFTLOCKKAANTUU. TÄHÄN VALINTA, JOKA PALAA KYSYNTÄÄN.
     searchAirports(country)
     list = []
     for rivi in searchAirports(country):
