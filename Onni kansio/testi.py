@@ -70,7 +70,8 @@ def chooseCountry():
     country = input("Select a country to fly to: ")    #JOS KÄYTTÄJÄ VALITSEE VÄÄRÄN MAAN / TYPO, NIIN OHJELMA SOFTLOCKKAANTUU. TÄHÄN VALINTA, JOKA PALAA KYSYNTÄÄN.
     list = []
     for rivi in searchAirports(country):
-        ''.join(rivi[0])
+        ''.join(rivi)
+        print(type(rivi))
         print(f"{rivi[0]} {geodesic(km_calculator(rivi[0]), km_calculator(current_location)).km:0.2f} km")
         list.append(rivi[0])
     choose_airport(list)
@@ -87,12 +88,12 @@ def spawn_point():
     spawn_point_cursor.execute(spawn_point_code)
     result = spawn_point_cursor.fetchall()
     for line in result:
-        current_airport = line
+        current_airport = ''.join(line)
         ''.join(current_airport[0])
-        current_airport = current_airport[0]
+        print(type(current_airport))
         print(f"You're currently at: {current_airport}")
         global current_location
-        current_location = current_airport[0]
+        current_location = current_airport
     chooseCountry()
 def Difficulty():
     diff_level = input("Please choose a difficulty level: \nThe Difficulty levels are Easy, Normal and Hard\n:")
