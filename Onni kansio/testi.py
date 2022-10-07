@@ -20,7 +20,7 @@ def co2_tracker(value):
     global co2_budget
     co2_budget = co2_budget - value
     if co2_budget > 1000:
-        print(co2_budget)
+        print(f"You have {co2_budget:0.2f} co2 left in your budget\n")
         return
     else:
         game_over()
@@ -28,7 +28,6 @@ def co2_tracker(value):
 def update_location(location):
     current_location = location
     print(f"Your location is: {current_location}")
-
     chooseCountry()
 
 
@@ -68,12 +67,10 @@ def searchAirports(chosen_name):
 
 def chooseCountry():
     country = input("Select a country to fly to: ")    #JOS KÄYTTÄJÄ VALITSEE VÄÄRÄN MAAN / TYPO, NIIN OHJELMA SOFTLOCKKAANTUU. TÄHÄN VALINTA, JOKA PALAA KYSYNTÄÄN.
-    searchAirports(country)
     list = []
     for rivi in searchAirports(country):
         #''.join(rivi)
-        print(rivi[0])
-        print(f"{geodesic(km_calculator(rivi[0]), km_calculator(current_location)).km:0.2f} km")
+        print(f"{rivi[0]} {geodesic(km_calculator(rivi[0]), km_calculator(current_location)).km:0.2f} km")
         list.append(rivi[0])
     choose_airport(list)
 
@@ -90,6 +87,7 @@ def spawn_point():
     result = spawn_point_cursor.fetchall()
     for line in result:
         current_airport = line
+        ''.join(current_airport)
         current_airport = current_airport[0]
         print(f"You're currently at: {current_airport}")
         global current_location
@@ -123,8 +121,5 @@ username_input()
 multiplier = Difficulty()
 spawn_point()
 
-def co2_budgetgiver():
-    co2_budget = 15000
-    return co2_budget
 
 # päivitetty :DD
