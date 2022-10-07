@@ -13,6 +13,7 @@ connection = mysql.connector.connect(
 def update_location(location):
     current_location = location
     print(f"Your location is: {current_location}")
+
     chooseCountry()
 
 
