@@ -17,9 +17,9 @@ def co2_budgetgiver():
 
 
 def co2_tracker(value):
-    if value < 15000:
-        global co2_budget
-        co2_budget = co2_budget - value
+    global co2_budget
+    co2_budget = co2_budget - value
+    if co2_budget > 1000:
         print(co2_budget)
         return
     else:
@@ -71,14 +71,16 @@ def chooseCountry():
     searchAirports(country)
     list = []
     for rivi in searchAirports(country):
-        ''.join(rivi)
-        print(f"{rivi[0]} {geodesic(km_calculator(rivi[0]), km_calculator(current_location)).km:0.2f} km")
+        #''.join(rivi)
+        print(rivi[0])
+        print(f"{geodesic(km_calculator(rivi[0]), km_calculator(current_location)).km:0.2f} km")
         list.append(rivi[0])
     choose_airport(list)
 
 
 def game_over():
     print("Game over you ran out of co2 to consume")
+    exit()
 
 
 def spawn_point():
