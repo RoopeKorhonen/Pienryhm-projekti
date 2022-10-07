@@ -12,7 +12,7 @@ connection = mysql.connector.connect(
          )
 
 def co2_budgetgiver():
-    co2_budget = 15000
+    co2_budget = 4000
     return co2_budget
 
 
@@ -97,7 +97,7 @@ def spawn_point():
         current_location = current_airport
     chooseCountry()
 def Difficulty():
-    diff_level = input("Please choose a difficulty level: \nThe Difficulty levels are \nEasy\nNormal\nHard\n:")
+    diff_level = input("Please choose a difficulty level: \nThe Difficulty levels are Easy, Normal and Hard\n:")
     global multiplier
     while diff_level != "easy" or "normal" or "hard":
         if diff_level == "easy":
@@ -128,20 +128,13 @@ def high_score_add_to_database(name):
 
 
 def high_score_calculator():
-    highscore = len(visited_airport_list())*10
+    highscore = len(airport_list)*10
     return highscore
 
 def visited_airport_list():
     visited_airports = []
     return visited_airports
 
-airport_list = visited_airport_list()
-co2_budget = co2_budgetgiver()
-username = username_input()
-multiplier = Difficulty()
-spawn_point()
-
-high_score_add_to_database(username)
 
 main_menu_int = input("Main menu\n1.Play\n2.Scores\n3.Quit\n: ")
 if main_menu_int == "1":
