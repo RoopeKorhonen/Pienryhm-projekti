@@ -113,7 +113,7 @@ def high_score_calculator():
 
 mainmenu_int = input("Main menu\n1.Play\n2.Scores\n3.Quit\n: ")
 if mainmenu_int == "1":
->>>>>>> 5a985c4cbb02a0b801998e36bfc16ce8ec534894
+
     username_input()
     multiplier = Difficulty()
     current_airport=spawn_point()

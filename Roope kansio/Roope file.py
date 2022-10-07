@@ -12,7 +12,7 @@ connection = mysql.connector.connect(
          password='moodleroope',
          autocommit=True
          )
-
+xdxdxdxdx testi
 def country_selecting():
     country_select = input("Give country name")
     return country_select

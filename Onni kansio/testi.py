@@ -27,6 +27,7 @@ def co2_tracker(value):
 
 def update_location(location):
     current_location = location
+    airport_list.append(current_location)
     print(f"Your location is: {current_location}")
 
     chooseCountry()
@@ -68,7 +69,6 @@ def searchAirports(chosen_name):
 
 def chooseCountry():
     country = input("Select a country to fly to: ")    #JOS KÄYTTÄJÄ VALITSEE VÄÄRÄN MAAN / TYPO, NIIN OHJELMA SOFTLOCKKAANTUU. TÄHÄN VALINTA, JOKA PALAA KYSYNTÄÄN.
-    searchAirports(country)
     list = []
     for rivi in searchAirports(country):
         #''.join(rivi)
@@ -79,7 +79,7 @@ def chooseCountry():
 
 
 def game_over():
-    print("Game over you ran out of co2 to consume")
+    print(f"Game over, you have ran out of Co2 to consume. Your total highscore is {high_score_calculator()}.")
     exit()
 
 
@@ -90,6 +90,7 @@ def spawn_point():
     result = spawn_point_cursor.fetchall()
     for line in result:
         current_airport = line
+        ''.join(current_airport)
         current_airport = current_airport[0]
         print(f"You're currently at: {current_airport}")
         global current_location
@@ -118,13 +119,46 @@ def username_input():
     user = input("Hello user please stage your gamertag: ")
     print(f"Hello {user}, welcome to the world of flying games.\nI am your game engine Flying Ultimatum")
     return
+
+def high_score_add_to_database(name):
+    name_and_scoreADD: str = "INSERT INTO game (screen_name, highscores) values ('" + name + "', '" + high_score_calculator(name) + "');"
+    cursor = connection.cursor()
+    cursor.execute(name_and_scoreADD)
+    result = cursor.fetchall()
+
+
+def high_score_calculator():
+    highscore = len(visited_airport_list())*10
+    return highscore
+
+def visited_airport_list():
+    visited_airports = []
+    return visited_airports
+
+airport_list = visited_airport_list()
 co2_budget = co2_budgetgiver()
-username_input()
+username = username_input()
 multiplier = Difficulty()
 spawn_point()
 
-def co2_budgetgiver():
-    co2_budget = 15000
-    return co2_budget
+high_score_add_to_database(username)
+
+main_menu_int = input("Main menu\n1.Play\n2.Scores\n3.Quit\n: ")
+if main_menu_int == "1":
+    airport_list = visited_airport_list()
+    co2_budget = co2_budgetgiver()
+    username = username_input()
+    multiplier = Difficulty()
+    spawn_point()
+elif main_menu_int == "2":
+        print("highscores menu")
+        score_database = "SELECT screen_name, highscores FROM game ORDER BY highscores DESC LIMIT 5;"
+        cursor = connection.cursor()
+        cursor.execute(score_database)
+        result = cursor.fetchall()
+        for x in result:
+            print(x)
+elif main_menu_int == "3":
+        ("You have quit the game")
 
 # päivitetty :DD
