@@ -10,5 +10,5 @@ connection = mysql.connector.connect(
          autocommit=True
          )
 
-
+co2_budget =
 
