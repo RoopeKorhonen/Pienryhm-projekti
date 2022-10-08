@@ -11,6 +11,7 @@ connection = mysql.connector.connect(
          autocommit=True
          )
 
+
 def co2_budgetgiver():
     co2_budget = 15000
     return co2_budget
@@ -26,6 +27,7 @@ def co2_tracker(value):
         game_over()
 
 def update_location(location):
+    global current_location
     current_location = location
     airport_list.append(current_location)
     print(f"Your location is: {current_location}")
@@ -42,11 +44,10 @@ def emission_calculator(chosen):
 
 def choose_airport(choices):
     list = choices
-    choice = input("Choose an airport: ")
+    choice = input("Choose an airport / press 1 to choose a different country: ")
     while choice not in list:
         print("Error: Invalid Airport name (Typo?)")
-        choice = input("Choose an airport: ")
-    global current_location
+        choice = input("Choose an airport / press 1 to choose a different country: ")
     emission_calculator(choice)
     return
 
@@ -57,7 +58,7 @@ def km_calculator(airport):
     kursori = connection.cursor()
     kursori.execute(sql, ap_2_list)
     tulos = kursori.fetchall()
-    return tulos
+    return tulos[0]
 
 def searchAirports(chosen_name):
     sql = "SELECT name FROM airport Where iso_country in (select iso_country from country where name = '" + chosen_name + "') ORDER BY RAND() limit 5"
@@ -72,7 +73,8 @@ def chooseCountry():
     list = []
     for rivi in airports:
         rivi = ''.join(rivi)
-        print(f"{rivi} {geodesic(km_calculator(rivi[0]), km_calculator(current_location)).km:0.2f} km")
+        dist = geodesic(km_calculator(rivi), km_calculator(current_location)).km
+        print(f"{rivi} {dist:0.2f} km")
         list.append(rivi)
     choose_airport(list)
 
