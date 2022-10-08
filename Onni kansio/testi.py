@@ -12,7 +12,7 @@ connection = mysql.connector.connect(
          )
 
 def co2_budgetgiver():
-    co2_budget = 4000
+    co2_budget = 15000
     return co2_budget
 
 
@@ -44,7 +44,7 @@ def choose_airport(choices):
     list = choices
     choice = input("Choose an airport: ")
     while choice not in list:
-        print("Error")
+        print("Error: Invalid Airport name (Typo?)")
         choice = input("Choose an airport: ")
     global current_location
     emission_calculator(choice)
@@ -68,12 +68,12 @@ def searchAirports(chosen_name):
 
 def chooseCountry():
     country = input("Select a country to fly to: ")    #JOS KÄYTTÄJÄ VALITSEE VÄÄRÄN MAAN / TYPO, NIIN OHJELMA SOFTLOCKKAANTUU. TÄHÄN VALINTA, JOKA PALAA KYSYNTÄÄN.
+    airports = searchAirports(country)
     list = []
-    for rivi in searchAirports(country):
-        ''.join(rivi)
-        print(type(rivi))
-        print(f"{rivi[0]} {geodesic(km_calculator(rivi[0]), km_calculator(current_location)).km:0.2f} km")
-        list.append(rivi[0])
+    for rivi in airports:
+        rivi = ''.join(rivi)
+        print(f"{rivi} {geodesic(km_calculator(rivi[0]), km_calculator(current_location)).km:0.2f} km")
+        list.append(rivi)
     choose_airport(list)
 
 
@@ -90,7 +90,6 @@ def spawn_point():
     for line in result:
         current_airport = ''.join(line)
         ''.join(current_airport[0])
-        print(type(current_airport))
         print(f"You're currently at: {current_airport}")
         global current_location
         current_location = current_airport
