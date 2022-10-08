@@ -11,9 +11,8 @@ connection = mysql.connector.connect(
          autocommit=True
          )
 
-
 def co2_budgetgiver():
-    co2_budget = 15000
+    co2_budget = 5000
     return co2_budget
 
 
@@ -83,7 +82,10 @@ def chooseCountry():
 
 
 def game_over():
-    print(f"Game over, you have ran out of Co2 to consume. Your total highscore is {high_score_calculator()}.")
+    highScore_str = str(high_score_calculator())
+    name_and_scoreADD = "INSERT INTO game (screen_name, highscores) values ('" + username + "', '" + highScore_str + "');"
+    cursor_func(name_and_scoreADD)
+    print(f"Game over, you have ran out of Co2 to consume. Your total highscore is {highScore_str}.")
     exit()
 
 
@@ -121,17 +123,31 @@ def Difficulty():
 def username_input():
     user = input("Hello user please stage your gamertag: ")
     print(f"Hello {user}, welcome to the world of flying games.\nI am your game engine Flying Ultimatum")
-    return
+    return user
 
-def high_score_add_to_database(name):
-    name_and_scoreADD: str = "INSERT INTO game (screen_name, highscores) values ('" + name + "', '" + high_score_calculator(name) + "');"
-    cursor = connection.cursor()
-    cursor.execute(name_and_scoreADD)
+def cursor_func(sql_komento):                      #SQL PISTEYTYKSEN KOMENTO.
+    yhteys = mysql.connector.connect(
+        host='127.0.0.1',
+        port=3306,
+        database='flight_game',
+        user='root',
+        password='SeOnSiina!?',
+        autocommit=True
+    )
+    cursor = yhteys.cursor()
+
+    cursor.execute(sql_komento)
+
     result = cursor.fetchall()
+
+    return result
+#def high_score_add_to_database(name):
+   # name_and_scoreADD: str = "INSERT INTO game (screen_name, highscores) values ('" + name + "', '" + high_score_calculator(name) + "');"
+   # cursor_func(name_and_scoreADD)
 
 
 def high_score_calculator():
-    highscore = len(airport_list)*10000
+    highscore = len(airport_list)*30000
     return highscore
 
 def visited_airport_list():
@@ -142,11 +158,10 @@ def visited_airport_list():
 main_menu_int = input("Main menu\n1.Play\n2.Scores\n3.Quit\n: ")
 if main_menu_int == "1":
     airport_list = visited_airport_list()
-    co2_budget = co2_budgetgiver()
     username = username_input()
+    co2_budget = co2_budgetgiver()
     multiplier = Difficulty()
     spawn_point()
-    high_score_add_to_database(username)
 elif main_menu_int == "2":
         print("highscores menu")
         score_database = "SELECT screen_name, highscores FROM game ORDER BY highscores DESC LIMIT 5;"

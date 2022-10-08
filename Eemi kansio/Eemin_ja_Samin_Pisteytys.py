@@ -1,7 +1,7 @@
 
 def high_score_calculator(airport_amount):
-    highscore = len(airport_amount)*10
-    return highscore
+    airports = len(airport_amount)*10
+    return airports
 
 
 airport = ["vantaa", "ruotsi", "kulli"]
