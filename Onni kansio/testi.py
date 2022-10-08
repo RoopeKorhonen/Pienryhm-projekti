@@ -169,7 +169,7 @@ elif main_menu_int == "2":
         cursor.execute(score_database)
         result = cursor.fetchall()
         for x in result:
-            print(x)
+            print(x[0],x[1])
 elif main_menu_int == "3":
         ("You have quit the game")
 
