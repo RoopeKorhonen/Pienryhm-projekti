@@ -45,9 +45,12 @@ def emission_calculator(chosen):
 def choose_airport(choices):
     list = choices
     choice = input("Choose an airport / press 1 to choose a different country: ")
-    while choice not in list:
-        print("Error: Invalid Airport name (Typo?)")
-        choice = input("Choose an airport / press 1 to choose a different country: ")
+    if choice not in list:
+        if choice == "1":
+            chooseCountry()
+        else:
+            print("Error: Invalid Airport name (Typo?)")
+            choice = input("Choose an airport / press 1 to choose a different country: ")
     emission_calculator(choice)
     return
 
@@ -92,7 +95,7 @@ def spawn_point():
     for line in result:
         current_airport = ''.join(line)
         ''.join(current_airport[0])
-        print(f"You're currently at: {current_airport}")
+        print(f"You're currently at: {current_airport}\n")
         global current_location
         current_location = current_airport
     chooseCountry()
