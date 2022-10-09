@@ -160,19 +160,25 @@ def visited_airport_list():
 
 
 main_menu_int = input("Main menu\n1.Play\n2.Scores\n3.Quit\n: ")
-if main_menu_int == "1":
-    airport_list = visited_airport_list()
-    username = username_input()
-    co2_budget = co2_budgetgiver()
-    multiplier = Difficulty()
-    spawn_point()
-elif main_menu_int == "2":
-        print("Highscores menu.")
-        score_database = "SELECT screen_name, highscores FROM game ORDER BY highscores DESC LIMIT 5;"
-        cursor = connection.cursor()
-        cursor.execute(score_database)
-        result = cursor.fetchall()
-        for x in result:
-            print(x[0],x[1])
-elif main_menu_int == "3":
-    print("You have quit the game. Farewell!")
+if main_menu_int == "3":
+        print("You have quit the game. Farewell!")
+        exit()
+while main_menu_int != 1 or 2 or 3:
+    main_menu_int = input("Main menu\n1.Play\n2.Scores\n3.Quit\n: ")
+    if main_menu_int == "1":
+        airport_list = visited_airport_list()
+        username = username_input()
+        co2_budget = co2_budgetgiver()
+        multiplier = Difficulty()
+        spawn_point()
+    elif main_menu_int == "2":
+            print("Highscores menu.")
+            score_database = "SELECT screen_name, highscores FROM game ORDER BY highscores DESC LIMIT 5;"
+            cursor = connection.cursor()
+            cursor.execute(score_database)
+            result = cursor.fetchall()
+            for x in result:
+                print(x[0],x[1])
+    elif main_menu_int == "3":
+        print("You have quit the game. Farewell!")
+        exit()
