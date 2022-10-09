@@ -210,6 +210,7 @@ while main_menu_int != "1" or "2" or "3":
             result = cursor.fetchall()
             for x in result:
                 print(x[0], x[1])
+            main_menu_int = input("Main menu\n1.Play\n2.Scores\n3.Quit\n: ")
     elif main_menu_int == "3":
         print("You have quit the game. Farewell!")
         exit()
