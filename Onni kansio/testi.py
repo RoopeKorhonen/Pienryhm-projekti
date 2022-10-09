@@ -1,3 +1,4 @@
+global salasana
 salasana = input("Salasana: ")
 from geopy.distance import geodesic
 
@@ -150,6 +151,7 @@ def Difficulty():
 def username_input():
     user = input("Hello user please stage your gamertag: ")
     print(f"Hello {user}, welcome to the world of flying games.\nI am your game engine Flying Ultimatum")
+    print("Fly to as many places as you can while keeping your emission levels as low as possible")
     return user
 
 def cursor_func(sql_komento):                      #SQL PISTEYTYKSEN KOMENTO.
@@ -158,7 +160,7 @@ def cursor_func(sql_komento):                      #SQL PISTEYTYKSEN KOMENTO.
         port=3306,
         database='flight_game',
         user='root',
-        password='gutpo80',
+        password=salasana,
         autocommit=True
     )
     cursor = yhteys.cursor()
